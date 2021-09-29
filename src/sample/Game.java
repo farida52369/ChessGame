@@ -5,12 +5,11 @@ import sample.pieces.*;
 public class Game {
 
     // For the board --
-    private Piece[][] board;
+    private final Piece[][] board;
 
     public Game() {
 
         board = new Piece[8][8];
-
         // Black
         this.board[0][0] = new Rook(0, 0, Type.BLACK);
         this.board[0][1] = new Knight(0, 1, Type.BLACK);
