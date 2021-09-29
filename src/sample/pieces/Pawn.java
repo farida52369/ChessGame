@@ -46,8 +46,8 @@ public class Pawn extends Piece {
             whiteArr.add(MoveList.DOWN);
 
             // For Capturing Technique
-            whiteArr.add(MoveList.DIAGONAL_RIGHT_UP);
-            whiteArr.add(MoveList.DIAGONAL_LEFT_UP);
+            whiteArr.add(MoveList.DIAGONAL_RIGHT_DOWN);
+            whiteArr.add(MoveList.DIAGONAL_LEFT_DOWN);
 
             moves = whiteArr.toArray(moves);
         } else {

@@ -1,10 +1,12 @@
 package sample.pieces;
 
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import sample.MoveList;
 
 import java.util.Objects;
+
 
 public class Bishop extends Piece {
     public Bishop(int rowPos, int colPos, Type type) {

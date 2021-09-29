@@ -1,6 +1,7 @@
 package sample;
 
 import sample.pieces.*;
+import static sample.Constants.*;
 
 public class Game {
 
@@ -9,7 +10,7 @@ public class Game {
 
     public Game() {
 
-        board = new Piece[8][8];
+        board = new Piece[BOARD_WIDTH][BOARD_HEIGHT];
         // Black
         this.board[0][0] = new Rook(0, 0, Type.BLACK);
         this.board[0][1] = new Knight(0, 1, Type.BLACK);
@@ -21,7 +22,7 @@ public class Game {
         this.board[0][7] = new Rook(0, 7, Type.BLACK);
 
         // Pawn Black
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < BOARD_WIDTH; i++) {
             this.board[1][i] = new Pawn(1, i, Type.BLACK);
         }
 
@@ -36,7 +37,7 @@ public class Game {
         this.board[7][7] = new Rook(7, 7, Type.WHITE);
 
         // Pawn White
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < BOARD_WIDTH; i++) {
             this.board[6][i] = new Pawn(6, i, Type.WHITE);
         }
     }

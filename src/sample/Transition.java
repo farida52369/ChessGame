@@ -1,13 +1,13 @@
 package sample;
 
-public class OldNewMove {
+public class Transition {
 
     private int oldX;
     private int oldY;
     private int newX;
     private int newY;
 
-    public OldNewMove(int oldX, int oldY, int newX, int newY) {
+    public Transition(int oldX, int oldY, int newX, int newY) {
         this.oldX = oldX;
         this.oldY = oldY;
         this.newX = newX;
