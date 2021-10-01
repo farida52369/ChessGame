@@ -29,7 +29,7 @@ public class Knight extends Piece {
 
     @Override
     public MoveList[] getMoveList() {
-        return new MoveList[] {
+        return new MoveList[]{
                 MoveList.KNIGHT_RIGHT_UP,
                 MoveList.KNIGHT_UP_RIGHT,
                 MoveList.KNIGHT_LEFT_UP,

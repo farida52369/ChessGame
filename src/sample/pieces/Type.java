@@ -5,6 +5,7 @@ public enum Type {
     BLACK("black");
 
     private final String type;
+
     Type(String type) {
         this.type = type;
     }

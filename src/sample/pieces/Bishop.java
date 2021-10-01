@@ -30,11 +30,11 @@ public class Bishop extends Piece {
 
     @Override
     public MoveList[] getMoveList() {
-        return new MoveList[] {
-          MoveList.DIAGONAL_LEFT_DOWN,
-          MoveList.DIAGONAL_RIGHT_DOWN,
-          MoveList.DIAGONAL_LEFT_UP,
-          MoveList.DIAGONAL_RIGHT_UP
+        return new MoveList[]{
+                MoveList.DIAGONAL_LEFT_DOWN,
+                MoveList.DIAGONAL_RIGHT_DOWN,
+                MoveList.DIAGONAL_LEFT_UP,
+                MoveList.DIAGONAL_RIGHT_UP
         };
     }
 

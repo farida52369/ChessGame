@@ -1,7 +1,5 @@
 package sample;
 
-import static sample.Constants.*;
-
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -12,6 +10,8 @@ import javafx.scene.layout.StackPane;
 import sample.pieces.Piece;
 
 import java.util.Objects;
+
+import static sample.Constants.*;
 
 public class BoardVisualizer extends GridPane {
 

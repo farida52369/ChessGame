@@ -1,7 +1,9 @@
 package sample;
 
 import sample.pieces.*;
-import static sample.Constants.*;
+
+import static sample.Constants.BOARD_HEIGHT;
+import static sample.Constants.BOARD_WIDTH;
 
 public class Game {
 

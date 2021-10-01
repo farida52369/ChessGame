@@ -31,12 +31,18 @@ public enum MoveList {
 
     // X, Y are the possible moves
     private final int x, y;
+
     MoveList(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    public int getX() {return this.x;}
-    public int getY() {return this.y;}
+    public int getX() {
+        return this.x;
+    }
+
+    public int getY() {
+        return this.y;
+    }
 
 }

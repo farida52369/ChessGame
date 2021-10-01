@@ -4,10 +4,12 @@ import javafx.scene.image.ImageView;
 import javafx.util.Pair;
 import sample.MoveList;
 import sample.Transition;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import static sample.Constants.*;
+import static sample.Constants.MOVES_COUNT;
+import static sample.Constants.OPTIMAL_SIZE;
 
 public abstract class Piece {
 
@@ -65,28 +67,29 @@ public abstract class Piece {
         Piece pieceNew = board[transition.getNewX()][transition.getNewY()];
 
         // It's not even a Pawn
-        if (!pieceOld.equals(new Pawn(pieceOld.rowPos, pieceOld.colPos, pieceOld.type))) {
+        Piece pawn = new Pawn(transition.getOldX(), transition.getOldY(), pieceOld.type);
+        if (!(pieceOld.getClass()).equals(pawn.getClass())) {
             return true;
         }
 
         // If Straight Move
-        if (transition.getNewX() == 0) {
+        if (transition.getNewY() == 0) {
 
             // If Black is Positive 1 and if White is negative 1
-            int colorMode = transition.getGapBetweenY() / Math.abs(transition.getGapBetweenY());
+            int colorMode = transition.getGapBetweenX() / Math.abs(transition.getGapBetweenX());
 
             // Two Squares allowed if First Move
             // Only One in any Move Later
             for (int i = 1; i <= Math.abs(colorMode); i++) {
                 // If The Straight Move is Occupied! return false
-                if (hasPiece(board[transition.getOldY()][transition.getOldY() + (i * colorMode)]))
+                if (hasPiece(board[transition.getOldX() + (i * colorMode)][transition.getOldY()]))
                     return false;
-
             }
         } else {
             // If The Move is diagonal
             if (!hasPiece(pieceNew) || pieceOld.type == pieceNew.type)
                 return false;
+
         }
         return true;
     }
@@ -150,6 +153,8 @@ public abstract class Piece {
                     ifHasCollided = true;
                     if (tempPiece.type == piece.type) break;
                 }
+
+                if (!isValidPawnMove(new Transition(xNow, yNow, x, y), board)) continue;
                 moves.add(new Pair<>(x, y));
             }
         }
