@@ -161,6 +161,194 @@ public abstract class Piece {
         return moves;
     }
 
+    // Checking if the king is under attack
+    // (x, y) King's Position
+    public List<Pair<Integer, Integer>> checkKing(int x, int y, Piece[][] board) {
+        List<Pair<Integer, Integer>> checkingMoves = new ArrayList<>();
+
+        // Checking The Four Directions (UP - DOWN - RIGHT - LEFT)
+        // THE PIECES COULD MOVE THIS WAY ARE QUEEN AND ROOK
+        // DOWN
+        for (int i = 1; i <= MOVES_COUNT; i++) {
+            if (inRange(x + i, y)) {
+                Piece piece = board[x + i][y];
+                if (piece != null) {
+                    Piece queen = new Queen(piece.rowPos + i, piece.colPos, piece.type);
+                    Piece rook = new Rook(piece.rowPos + i, piece.colPos, piece.type);
+                    if ((board[x][y].getType()).equals(piece.getType()))
+                        break;
+                    if (((piece.getClass()).equals(queen.getClass())) || ((piece.getClass()).equals(rook.getClass()))) {
+                        checkingMoves.add(new Pair<>(x + i, y));
+                    }
+                    break;
+                }
+            } else break;
+        }
+
+        // UP
+        for (int i = 1; i <= MOVES_COUNT; i++) {
+            if (inRange(x - i, y)) {
+                Piece piece = board[x - i][y];
+                if (piece != null) {
+                    Piece queen = new Queen(piece.rowPos - i, piece.colPos, piece.type);
+                    Piece rook = new Rook(piece.rowPos - i, piece.colPos, piece.type);
+                    if ((board[x][y].getType()).equals(piece.getType()))
+                        break;
+                    if (((piece.getClass()).equals(queen.getClass())) || ((piece.getClass()).equals(rook.getClass()))) {
+                        checkingMoves.add(new Pair<>(x - i, y));
+                    }
+                    break;
+                }
+            } else break;
+        }
+
+        // RIGHT
+        for (int i = 1; i <= MOVES_COUNT; i++) {
+            if (inRange(x, y + i)) {
+                Piece piece = board[x][y + i];
+                if (piece != null) {
+                    Piece queen = new Queen(piece.rowPos, piece.colPos + i, piece.type);
+                    Piece rook = new Rook(piece.rowPos, piece.colPos + i, piece.type);
+                    if ((board[x][y].getType()).equals(piece.getType()))
+                        break;
+                    if (((piece.getClass()).equals(queen.getClass())) || ((piece.getClass()).equals(rook.getClass()))) {
+                        checkingMoves.add(new Pair<>(x, y + i));
+                    }
+                    break;
+                }
+            } else break;
+        }
+
+        // LEFT
+        for (int i = 1; i <= MOVES_COUNT; i++) {
+            if (inRange(x, y - i)) {
+                Piece piece = board[x][y - i];
+                if (piece != null) {
+                    Piece queen = new Queen(piece.rowPos, piece.colPos - i, piece.type);
+                    Piece rook = new Rook(piece.rowPos, piece.colPos - i, piece.type);
+                    if ((board[x][y].getType()).equals(piece.getType()))
+                        break;
+                    if (((piece.getClass()).equals(queen.getClass())) || ((piece.getClass()).equals(rook.getClass()))) {
+                        checkingMoves.add(new Pair<>(x, y - i));
+                    }
+                    break;
+                }
+            } else break;
+        }
+
+        // Checking The Four Diagonals (RIGHT DOWN - RIGHT UP - LEFT DOWN - LEFT UP)
+        // THE PIECES COULD MOVE THIS WAY ARE QUEEN AND BISHOP
+        // RIGHT DOWN
+        for (int i = 1; i <= MOVES_COUNT; i++) {
+            if (inRange(x + i, y + i)) {
+                Piece piece = board[x + i][y + i];
+                if (piece != null) {
+                    Piece queen = new Queen(piece.rowPos + i, piece.colPos + i, piece.type);
+                    Piece bishop = new Bishop(piece.rowPos + i, piece.colPos + i, piece.type);
+                    if ((board[x][y].getType()).equals(piece.getType()))
+                        break;
+                    if (((piece.getClass()).equals(queen.getClass())) || ((piece.getClass()).equals(bishop.getClass()))) {
+                        checkingMoves.add(new Pair<>(x + i, y + i));
+                    }
+                    break;
+                }
+            } else break;
+        }
+
+        // RIGHT UP
+        for (int i = 1; i <= MOVES_COUNT; i++) {
+            if (inRange(x - i, y + i)) {
+                Piece piece = board[x - i][y + i];
+                if (piece != null) {
+                    Piece queen = new Queen(piece.rowPos - i, piece.colPos + i, piece.type);
+                    Piece bishop = new Bishop(piece.rowPos - i, piece.colPos + i, piece.type);
+                    if ((board[x][y].getType()).equals(piece.getType()))
+                        break;
+                    if (((piece.getClass()).equals(queen.getClass())) || ((piece.getClass()).equals(bishop.getClass()))) {
+                        checkingMoves.add(new Pair<>(x - i, y + i));
+                    }
+                    break;
+                }
+            } else break;
+        }
+
+        // LEFT DOWN
+        for (int i = 1; i <= MOVES_COUNT; i++) {
+            if (inRange(x + i, y - i)) {
+                Piece piece = board[x + i][y - i];
+                if (piece != null) {
+                    Piece queen = new Queen(piece.rowPos + i, piece.colPos - i, piece.type);
+                    Piece bishop = new Bishop(piece.rowPos + i, piece.colPos - i, piece.type);
+                    if ((board[x][y].getType()).equals(piece.getType()))
+                        break;
+                    if (((piece.getClass()).equals(queen.getClass())) || ((piece.getClass()).equals(bishop.getClass()))) {
+                        checkingMoves.add(new Pair<>(x + i, y - i));
+                    }
+                    break;
+                }
+            } else break;
+        }
+
+        // LEFT UP
+        for (int i = 1; i <= MOVES_COUNT; i++) {
+            if (inRange(x - i, y - i)) {
+                Piece piece = board[x - i][y - i];
+                if (piece != null) {
+                    Piece queen = new Queen(piece.rowPos - i, piece.colPos - i, piece.type);
+                    Piece bishop = new Bishop(piece.rowPos - i, piece.colPos - i, piece.type);
+                    if ((board[x][y].getType()).equals(piece.getType()))
+                        break;
+                    if (((piece.getClass()).equals(queen.getClass())) || ((piece.getClass()).equals(bishop.getClass()))) {
+                        checkingMoves.add(new Pair<>(x - i, y - i));
+                    }
+                    break;
+                }
+            } else break;
+        }
+
+        // CHECKING IF IT'S A KNIGHT OR NOT
+        Piece knight = new Knight(0, 0, Type.BLACK);
+        for (MoveList moveList : knight.getMoveList()) {
+            int xKnight = x + moveList.getX(), yKnight = y + moveList.getY();
+            if (inRange(xKnight, yKnight)) {
+                Piece piece = board[xKnight][yKnight];
+                if (piece != null) {
+                    if ((board[x][y].getType()).equals(piece.getType()))
+                        continue;
+                    if ((piece.getClass()).equals(knight.getClass()))
+                        checkingMoves.add(new Pair<>(xKnight, yKnight));
+                }
+            }
+        }
+
+        // CHECKING IF IT'S A PAWN
+        int colorMode = (board[x][y].getType().equals("white")) ? -1 : 1;
+
+        // Case 1
+        // BAD PAWN VARIABLE BUT WHAT IN THE HAND :((
+        Piece pawn = new Pawn(0, 0, Type.BLACK);
+        int xPawn1 = colorMode + x, yPawn1 = colorMode + y;
+        if (inRange(xPawn1, yPawn1)) {
+            Piece piece = board[xPawn1][yPawn1];
+            if (piece != null && !(piece.getType()).equals(board[x][y].getType())) {
+                if ((piece.getClass()).equals(pawn.getClass()))
+                    checkingMoves.add(new Pair<>(xPawn1, yPawn1));
+            }
+        }
+
+        // Case 2
+        int xPawn2 = x + colorMode, yPawn2 = -1 * colorMode + y;
+        if (inRange(xPawn2, yPawn2)) {
+            Piece piece = board[xPawn2][yPawn2];
+            if (piece != null && !(piece.getType()).equals(board[x][y].getType())) {
+                if ((piece.getClass()).equals(pawn.getClass()))
+                    checkingMoves.add(new Pair<>(xPawn2, yPawn2));
+            }
+        }
+
+        return checkingMoves;
+    }
+
     // If it's Queen, Rook, or Bishop, then it's (false)
     public abstract boolean useBaseMoves();
 
