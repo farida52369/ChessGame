@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import sample.pieces.Piece;
 
 import java.util.Objects;
 
@@ -16,6 +17,10 @@ public class Main extends Application {
 
         BoardVisualizer initializer = new BoardVisualizer();
         Game game = new Game();
+
+        // Trying a move manually
+        game.moveProcess(new Transition(6, 0, 5, 0));
+
         GridPane grid = initializer.visualize(game.getBoard());
 
         // For Image as an icon

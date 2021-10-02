@@ -95,7 +95,8 @@ public abstract class Piece {
     }
 
 
-    // isPossibleMove Is consider as the main Part in the move process!!
+    // allPossibleMoves Is consider as the main Part in the move process!!
+    // As it's return all the possible moves for a selected Piece
     public List<Pair<Integer, Integer>> allPossibleMoves(int xNow, int yNow, Piece[][] board) {
 
         // For The List that has all Possible Moves

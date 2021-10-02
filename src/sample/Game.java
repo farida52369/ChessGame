@@ -1,6 +1,9 @@
 package sample;
 
+import javafx.util.Pair;
 import sample.pieces.*;
+
+import java.util.List;
 
 import static sample.Constants.BOARD_HEIGHT;
 import static sample.Constants.BOARD_WIDTH;
@@ -44,6 +47,20 @@ public class Game {
         }
     }
 
+    // Move Process
+    public void moveProcess(Transition transition) {
+        int xNew = transition.getNewX(), yNew = transition.getNewY();
+        int xOld = transition.getOldX(), yOld = transition.getOldY();
+
+        List<Pair<Integer, Integer>> moves = this.board[xOld][yOld].allPossibleMoves(xOld, yOld, this.board);
+        for (Pair<Integer, Integer> p : moves) {
+            if (p.getKey() == xNew && p.getValue() == yNew) {
+                this.board[xNew][yNew] = this.board[xOld][yOld];
+                this.board[xOld][yOld] = null;
+            }
+        }
+    }
+    
     public Piece[][] getBoard() {
         return this.board;
     }
