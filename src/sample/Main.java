@@ -15,23 +15,25 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Chess Game");
 
-        BoardVisualizer initializer = new BoardVisualizer();
         Game game = new Game();
-
-        // Trying a move manually
-        game.moveProcess(new Transition(6, 0, 5, 0));
-
-        GridPane grid = initializer.visualize(game.getBoard());
+        Piece[][] board = game.getBoard();
 
         // For Image as an icon
         Image icon = new Image((Objects.requireNonNull(getClass().getResourceAsStream("../Images/icon.png"))));
         primaryStage.getIcons().add(icon);
 
-        primaryStage.setScene(new Scene(grid));
+        GridPane gridPane = new BoardVisualizer(board);
+
+
+        MoveBoardUI moveBoardUI = new MoveBoardUI();
+        moveBoardUI.selectPiece(gridPane, board);
+
+        primaryStage.setScene(new Scene(gridPane));
         primaryStage.show();
     }
 
     public static void main(String[] args) {
+        // 😀
         launch(args);
     }
 }

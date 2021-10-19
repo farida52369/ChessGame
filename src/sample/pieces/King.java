@@ -8,8 +8,11 @@ import java.util.Objects;
 
 public class King extends Piece {
 
+    private ImageView imageView;
+
     public King(int rowPos, int colPos, Type type) {
         super(rowPos, colPos, type);
+        this.setPieceSprite(this.getImage());
     }
 
     @Override
@@ -18,29 +21,37 @@ public class King extends Piece {
     }
 
     @Override
-    public ImageView getPieceSprite() {
+    public Image getImage() {
         String locationImage = String.format("../../Images/%s_king.png", this.getType());
-        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(locationImage)));
-        ImageView imageView = new ImageView(image);
+        return new Image(Objects.requireNonNull(getClass().getResourceAsStream(locationImage)));
+    }
 
-        imageView.setFitWidth(this.getOptimalSize());
-        imageView.setFitHeight(this.getOptimalSize());
+    @Override
+    public void setPieceSprite(Image image) {
+        this.imageView = new ImageView(image);
+        this.imageView.setFitWidth(this.getOptimalSize());
+        this.imageView.setFitHeight(this.getOptimalSize());
+    }
+
+    @Override
+    public ImageView getPieceSprite() {
+
         return imageView;
     }
 
     @Override
     public MoveList[] getMoveList() {
 
-        return new MoveList[] {
-          MoveList.UP,
-          MoveList.DOWN,
-          MoveList.RIGHT,
-          MoveList.LEFT,
+        return new MoveList[]{
+                MoveList.UP,
+                MoveList.DOWN,
+                MoveList.RIGHT,
+                MoveList.LEFT,
 
-          MoveList.DIAGONAL_LEFT_DOWN,
-          MoveList.DIAGONAL_RIGHT_DOWN,
-          MoveList.DIAGONAL_LEFT_UP,
-          MoveList.DIAGONAL_RIGHT_UP
+                MoveList.DIAGONAL_LEFT_DOWN,
+                MoveList.DIAGONAL_RIGHT_DOWN,
+                MoveList.DIAGONAL_LEFT_UP,
+                MoveList.DIAGONAL_RIGHT_UP
         };
     }
 }

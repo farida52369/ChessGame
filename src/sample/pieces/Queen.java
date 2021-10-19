@@ -8,8 +8,17 @@ import java.util.Objects;
 
 public class Queen extends Piece {
 
+    private ImageView imageView;
+
     public Queen(int rowPos, int colPos, Type type) {
         super(rowPos, colPos, type);
+        this.setPieceSprite(this.getImage());
+    }
+
+    @Override
+    public Image getImage() {
+        String locationImage = String.format("../../Images/%s_queen.png", this.getType());
+        return new Image(Objects.requireNonNull(getClass().getResourceAsStream(locationImage)));
     }
 
     @Override
@@ -18,13 +27,15 @@ public class Queen extends Piece {
     }
 
     @Override
+    public void setPieceSprite(Image image) {
+        this.imageView = new ImageView(image);
+        this.imageView.setFitWidth(this.getOptimalSize());
+        this.imageView.setFitHeight(this.getOptimalSize());
+    }
+
+    @Override
     public ImageView getPieceSprite() {
-        String locationImage = String.format("../../Images/%s_queen.png", this.getType());
-        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(locationImage)));
-        ImageView imageView = new ImageView(image);
-        imageView.setFitWidth(this.getOptimalSize());
-        imageView.setFitHeight(this.getOptimalSize());
-        return imageView;
+        return this.imageView;
     }
 
     @Override

@@ -10,8 +10,18 @@ import java.util.Objects;
 
 public class Pawn extends Piece {
 
+    private ImageView imageView;
+
     public Pawn(int rowPos, int colPos, Type type) {
         super(rowPos, colPos, type);
+        this.setPieceSprite(this.getImage());
+
+    }
+
+    @Override
+    public Image getImage() {
+        String locationImage = String.format("../../Images/%s_pawn.png", this.getType());
+        return new Image(Objects.requireNonNull(getClass().getResourceAsStream(locationImage)));
     }
 
     @Override
@@ -20,14 +30,17 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public ImageView getPieceSprite() {
-        String locationImage = String.format("../../Images/%s_pawn.png", this.getType());
-        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(locationImage)));
-        ImageView imageView = new ImageView(image);
-        imageView.setFitWidth(this.getOptimalSize());
-        imageView.setFitHeight(this.getOptimalSize());
-        return imageView;
+    public void setPieceSprite(Image image) {
+        this.imageView = new ImageView(image);
+        this.imageView.setFitWidth(this.getOptimalSize());
+        this.imageView.setFitHeight(this.getOptimalSize());
     }
+
+    @Override
+    public ImageView getPieceSprite() {
+        return this.imageView;
+    }
+
 
     @Override
     public MoveList[] getMoveList() {
@@ -40,7 +53,7 @@ public class Pawn extends Piece {
             List<MoveList> whiteArr = new ArrayList<>();
 
             // For The First Move available Two Squares
-            if (!getHasMoved()) whiteArr.add(MoveList.DOUBLE_UP);
+            if (getHasMoved()) whiteArr.add(MoveList.DOUBLE_UP);
 
             // For All The Time Available One Square UP
             whiteArr.add(MoveList.DOWN);
@@ -55,7 +68,7 @@ public class Pawn extends Piece {
             List<MoveList> blackArr = new ArrayList<>();
 
             // For The First Move available Two Squares
-            if (!getHasMoved()) blackArr.add(MoveList.DOUBLE_DOWN);
+            if (getHasMoved()) blackArr.add(MoveList.DOUBLE_DOWN);
 
             // For All The Time Available One Square UP
             blackArr.add(MoveList.UP);

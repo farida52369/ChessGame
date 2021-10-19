@@ -16,19 +16,19 @@ public class Transition {
 
     //  Getters For oldX, oldY, newX, newY
     public int getNewX() {
-        return newX;
+        return this.newX;
     }
 
     public int getNewY() {
-        return newY;
+        return this.newY;
     }
 
     public int getOldX() {
-        return oldX;
+        return this.oldX;
     }
 
     public int getOldY() {
-        return oldY;
+        return this.oldY;
     }
 
     //  Setters For oldX, oldY, newX, newY
